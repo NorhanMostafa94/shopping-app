@@ -14,6 +14,7 @@ import { CategoryItemComponent } from './features/categories/category-item/categ
 import { CategoryListComponent } from './features/categories/category-list/category-list.component';
 import { CategoryService } from './features/categories/category.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
       { path: 'categories', component: CategoryListComponent },
       { path: 'categories/:id', component: ProductListComponent }
     ]),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    PaginationModule.forRoot()
   ],
   providers: [
     ProductService,

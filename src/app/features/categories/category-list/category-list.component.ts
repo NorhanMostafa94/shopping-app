@@ -15,6 +15,12 @@ export class CategoryListComponent implements OnInit {
   category: Category;
   addCategoryForm: FormGroup;
   modalRef: BsModalRef;
+
+  pageChanged(event: any): void {
+    // const startItem = (event.page - 1) * event.itemsPerPage;
+    // const endItem = event.page * event.itemsPerPage;
+    // this.data.slice(startItem, endItem);
+  }
   constructor(private categoryService: CategoryService, private modalService: BsModalService) { }
   ngOnInit() {
     if (!this.data) {
