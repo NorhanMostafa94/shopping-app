@@ -8,9 +8,36 @@
     </div>
     <div class="cat-card__footer">
         <h5 class="cat-card__text--left">{{product.name}}</h5>
-        <a href="#"><i class="fas fa-edit"></i></a>
+        <i class="fas fa-edit" (click)="openModal(edit)"></i>
         <input type="checkbox" name="delete" id="" />
         <!-- <span>delete</span> -->
     </div>
 </div>
 <!-- </div> -->
+
+<ng-template #edit>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Modal</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="editProductForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="">Product Name</label>
+                <input formControlName="productName" class="form-control" type="text" id="" [value]="product.name"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="">Price</label>
+                <input formControlName="productPrice" class="form-control" type="text" id="" [value]="product.price">
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-success" type="submit"
+                    [disabled]="editProductForm.controls.productName.invalid || editProductForm.controls.productPrice.invalid">Save</button>
+                <button class="btn btn-danger" (click)="modalRef.hide()">close</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

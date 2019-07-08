@@ -2,7 +2,7 @@ import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { Category } from '../../../_model/category';
 import { CategoryService } from '../category.service';
 
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -21,7 +21,7 @@ export class CategoryListComponent implements OnInit {
       this.data = this.categoryService.getAll();
     }
     this.addCategoryForm = new FormGroup({
-      categoryName: new FormControl()
+      categoryName: new FormControl('')
     })
   }
   openModal(template: TemplateRef<any>) {
@@ -29,12 +29,13 @@ export class CategoryListComponent implements OnInit {
   }
   onSubmit() {
     this.addCategoryForm.getRawValue();
-    // this.category.name = this.addCategoryForm.controls.categoryName.value;
-    // this.category.image = 'assets/images/avatar.jpg';
     this.category = { name: this.addCategoryForm.controls.categoryName.value, image: 'assets/images/avatar.jpg' }
-    this.categoryService.add(this.category)
-    console.log(this.addCategoryForm.controls.categoryName.value)
-    this.modalService.hide(1);
+    if (this.addCategoryForm.controls.categoryName.valid) {
+      this.categoryService.add(this.category)
+      this.addCategoryForm.controls.categoryName.setValue('')
+      this.modalService.hide(1);
+    }
+    console.log(this.addCategoryForm.controls.categoryName)
   }
 
 }
