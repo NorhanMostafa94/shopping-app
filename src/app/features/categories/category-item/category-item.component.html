@@ -1,0 +1,11 @@
+<div class="cat-card">
+    <div class="cat-card__body">
+        <img [src]="category.image" alt="category-img" srcset="">
+        <div class="cat-card__overlay">
+            <a [routerLink]="['/categories',category.id]"><i class="fas fa-angle-right"></i></a>
+        </div>
+    </div>
+    <div class="cat-card__footer">
+        <h5>{{category.name}}</h5>
+    </div>
+</div>
