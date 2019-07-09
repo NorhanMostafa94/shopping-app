@@ -1,5 +1,35 @@
+<button type="button" class="btn btn-primary" (click)="openModal(addProduct)">Add Product</button>
+<ng-template #addProduct>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Modal</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="">Product Name</label>
+                <input formControlName="productName" class="form-control" type="text" id="" required>
+            </div>
+            <div class="form-group">
+                <label for="">Price</label>
+                <input formControlName="productPrice" class="form-control" type="number" id="">
+            </div>
+            <div class="form-group">
+                <label for="">Code</label>
+                <input formControlName="productCode" class="form-control" type="text" id="">
+            </div>
+            <div class="pull-right">
+                <button class="btn btn-success" type="submit"
+                    [disabled]="addProductForm.controls.productName.invalid || addProductForm.controls.productPrice.invalid">Save</button>
+                <button class="btn btn-danger" (click)="modalRef.hide()">close</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
 <div class="container">
     <div class="row justify-content-center">
-        <product-item class="col-lg-3 col-md-2 col-sm-1" *ngFor="let prod of data" [product]="prod"></product-item>
+        <product-item class="col-lg-3 col-md-4 col-sm-1" *ngFor="let prod of data" [product]="prod"></product-item>
     </div>
 </div>

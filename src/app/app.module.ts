@@ -15,6 +15,7 @@ import { CategoryListComponent } from './features/categories/category-list/categ
 import { CategoryService } from './features/categories/category.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { HeaderComponent } from './core/header/header.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PaginationModule } from 'ngx-bootstrap/pagination';
     ProductItemComponent,
     ProductListComponent,
     CategoryItemComponent,
-    CategoryListComponent
+    CategoryListComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ export class CategoryService {
     constructor(private productService: ProductService) {
         this.data = [
             { id: 1, name: 'Electronics', image: 'assets/images/elec-1.jpg', products: productService.getByCategoryId(1) },
+            { id: 2, name: 'Watches', image: 'assets/images/wat-1.png', products: productService.getByCategoryId(2) },
         ]
     }
 

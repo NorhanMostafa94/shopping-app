@@ -8,7 +8,8 @@
     </div>
     <div class="cat-card__footer">
         <h5 class="cat-card__text">{{product.name}}</h5>
-        <h6 class="cat-card__subtext">{{product.price}}</h6>
+        <h6 class="cat-card__subtext">{{product.price}}$</h6>
+        <h6 class="cat-card__subtext pb-5">Code:{{product.code}}</h6>
         <div class="cat-card__edit">
             <i class="fas fa-edit" (click)="openModal(edit)"></i>
         </div>
@@ -36,7 +37,7 @@
             </div>
             <div class="form-group">
                 <label for="">Price</label>
-                <input formControlName="productPrice" class="form-control" type="text" id="" [value]="product.price">
+                <input formControlName="productPrice" class="form-control" type="number" id="" [value]="product.price">
             </div>
             <div class="pull-right">
                 <button class="btn btn-success" type="submit"

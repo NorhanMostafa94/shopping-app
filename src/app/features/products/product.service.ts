@@ -6,9 +6,12 @@ export class ProductService {
     data: Product[];
     constructor() {
         this.data = [
-            { id: 1, name: 'pro-1', code: 111, price: 111, image: 'assets/images/elec-1.jpg', fkCategoryId: 1 },
-            { id: 2, name: 'pro-2', code: 222, price: 222, image: 'assets/images/elec-2.jpg', fkCategoryId: 1 },
-            { id: 3, name: 'pro-3', code: 333, price: 333, image: 'assets/images/elec-3.jpg', fkCategoryId: 1 },
+            { id: 1, name: 'pro-1', code: 111, price: 100, image: 'assets/images/elec-1.jpg', fkCategoryId: 1 },
+            { id: 2, name: 'pro-2', code: 222, price: 200, image: 'assets/images/elec-2.jpg', fkCategoryId: 1 },
+            { id: 3, name: 'pro-3', code: 333, price: 300, image: 'assets/images/elec-3.jpg', fkCategoryId: 1 },
+            { id: 4, name: 'pro-4', code: 444, price: 400, image: 'assets/images/wat-1.png', fkCategoryId: 2 },
+            { id: 5, name: 'pro-5', code: 555, price: 500, image: 'assets/images/wat-2.png', fkCategoryId: 2 },
+            { id: 6, name: 'pro-6', code: 666, price: 600, image: 'assets/images/wat-3.png', fkCategoryId: 2 },
         ]
     }
     getAll(): Product[] {
@@ -21,7 +24,8 @@ export class ProductService {
         return this.data.filter(prods => prods.fkCategoryId === id);
     }
     add(product: Product) {
-        product.id = this.data.length + 1;
+        const i = this.data.length + 1;
+        product.id = i;
         this.data.push(product);
     }
     update(product: Product) {

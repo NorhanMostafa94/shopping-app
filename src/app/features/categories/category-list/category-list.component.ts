@@ -11,7 +11,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent implements OnInit {
-  @Input() data: Category[];
+  data: Category[];
   category: Category;
   addCategoryForm: FormGroup;
   modalRef: BsModalRef;
@@ -40,6 +40,7 @@ export class CategoryListComponent implements OnInit {
       this.categoryService.add(this.category)
       this.addCategoryForm.controls.categoryName.setValue('')
       this.modalService.hide(1);
+      console.log(this.category.id)
     }
     console.log(this.addCategoryForm.controls.categoryName)
   }

@@ -29,7 +29,8 @@
         overflow: hidden;
 
         img {
-            width: 100%;
+            width: 169px;
+            height: 257px;
             object-fit: cover;
             transition: all 0.3s ease-out 0s;
         }
@@ -84,13 +85,14 @@
             white-space: nowrap;
             font-size: 1.2rem;
             font-weight: 300;
-            padding-bottom: 28px;
+            // padding-bottom: 28px;
             text-align: left;
             padding-right: 10px;
             width: 80px;
             margin-left: 12px;
             color: $color-gray;
         }
+
 
         .cat-card__edit {
             position: absolute;

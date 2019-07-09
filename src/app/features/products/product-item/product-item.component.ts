@@ -2,7 +2,7 @@ import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { Product } from '../../../_model/product';
 import { ProductService } from '../product.service';
 
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
@@ -20,7 +20,8 @@ export class ProductItemComponent implements OnInit {
   ngOnInit() {
     this.editProductForm = new FormGroup({
       productName: new FormControl(''),
-      productPrice: new FormControl('')
+      productPrice: new FormControl('', Validators.compose([Validators.required,
+      Validators.max(100000)]))
     })
   }
 
@@ -31,6 +32,7 @@ export class ProductItemComponent implements OnInit {
   onSubmit() {
     if (this.editProductForm.controls.productName.valid && this.editProductForm.controls.productPrice.valid) {
       this.product.name = this.editProductForm.controls.productName.value;
+      this.product.price = this.editProductForm.controls.productPrice.value;
       this.productService.update(this.product)
       this.modalService.hide(1)
     }
