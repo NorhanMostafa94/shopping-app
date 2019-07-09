@@ -1,5 +1,5 @@
 .cat-card {
-    width: 98%;
+    width: 80%;
     position: relative;
     overflow: hidden;
     text-align: center;
@@ -29,8 +29,8 @@
         overflow: hidden;
 
         img {
-            width: 169px;
-            height: 257px;
+            width: 140px;
+            height: 199px;
             object-fit: cover;
             transition: all 0.3s ease-out 0s;
         }
