@@ -7,6 +7,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({
   selector: 'product-list',
@@ -19,12 +20,15 @@ export class ProductListComponent implements OnInit {
   id: number;
   modalRef: BsModalRef;
   addProductForm: FormGroup;
+  pData: Product[];
+
   constructor(private productService: ProductService, private activatedRoute: ActivatedRoute, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
       this.id = +params.get('id');
       this.data = this.productService.getByCategoryId(this.id);
+      this.pData = this.data.slice(0, 3);
       console.log(this.data)
       if (this.data.length == 0) {
         console.log('null')
@@ -60,6 +64,13 @@ export class ProductListComponent implements OnInit {
       console.log(this.addProductForm.controls.productPrice);
       // console.log(this.productService.getAll())
     }
+  }
+
+  //pagination
+  pageChanged(event: PageChangedEvent): void {
+    const startItem = (event.page - 1) * event.itemsPerPage;
+    const endItem = event.page * event.itemsPerPage;
+    this.pData = this.data.slice(startItem, endItem);
   }
 
 }

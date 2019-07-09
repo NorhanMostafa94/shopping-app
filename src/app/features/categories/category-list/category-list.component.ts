@@ -4,6 +4,7 @@ import { CategoryService } from '../category.service';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({
   selector: 'category-list',
@@ -15,12 +16,6 @@ export class CategoryListComponent implements OnInit {
   category: Category;
   addCategoryForm: FormGroup;
   modalRef: BsModalRef;
-
-  pageChanged(event: any): void {
-    // const startItem = (event.page - 1) * event.itemsPerPage;
-    // const endItem = event.page * event.itemsPerPage;
-    // this.data.slice(startItem, endItem);
-  }
   constructor(private categoryService: CategoryService, private modalService: BsModalService) { }
   ngOnInit() {
     if (!this.data) {
@@ -40,7 +35,6 @@ export class CategoryListComponent implements OnInit {
       this.categoryService.add(this.category)
       this.addCategoryForm.controls.categoryName.setValue('')
       this.modalService.hide(1);
-      console.log(this.category.id)
     }
     console.log(this.addCategoryForm.controls.categoryName)
   }

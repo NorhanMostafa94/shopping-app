@@ -30,6 +30,8 @@
 </ng-template>
 <div class="container">
     <div class="row justify-content-center">
-        <product-item class="col-lg-3 col-md-4 col-sm-1" *ngFor="let prod of data" [product]="prod"></product-item>
+        <product-item class="col-lg-3 col-md-4 col-sm-1" *ngFor="let prod of pData" [product]="prod"></product-item>
     </div>
+
 </div>
+<pagination [totalItems]="data.length" [itemsPerPage]=3 (pageChanged)="pageChanged($event)"></pagination>
