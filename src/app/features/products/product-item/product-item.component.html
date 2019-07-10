@@ -14,7 +14,7 @@
             <i class="fas fa-edit" (click)="openModal(edit)"></i>
         </div>
         <div class="cat-card__delete">
-            <input type="checkbox" name="delete" id="" />
+            <input type="checkbox" name="delete" id="" (click)="deleteFn($event,product.id)" />
         </div>
         <!-- <span>delete</span> -->
     </div>
@@ -41,8 +41,8 @@
             </div>
             <div class="pull-right">
                 <button class="btn btn-success" type="submit"
-                    [disabled]="editProductForm.controls.productName.invalid || editProductForm.controls.productPrice.invalid">Save</button>
-                <button class="btn btn-danger" (click)="modalRef.hide()">close</button>
+                    [disabled]="editProductForm.controls.productName.invalid && editProductForm.controls.productPrice.invalid">Save</button>
+                <button class="btn btn-danger" type="reset" (click)="modalRef.hide()">close</button>
             </div>
         </form>
     </div>

@@ -1,4 +1,7 @@
-<button type="button" class="btn btn-primary" (click)="openModal(addProduct)">Add Product</button>
+<button type="button" class="btn btn-danger round mr-5 mt-2 right" (click)="deleteArr()"
+    [disabled]="arr.length==0">Delete</button>
+
+<button type="button" class="btn btn-success round mr-2 mt-2 right" (click)="openModal(addProduct)">Add Product</button>
 <ng-template #addProduct>
     <div class="modal-header">
         <h4 class="modal-title pull-left">Modal</h4>
@@ -23,15 +26,17 @@
             <div class="pull-right">
                 <button class="btn btn-success" type="submit"
                     [disabled]="addProductForm.controls.productName.invalid || addProductForm.controls.productPrice.invalid">Save</button>
-                <button class="btn btn-danger" (click)="modalRef.hide()">close</button>
+                <button class="btn btn-danger" type="reset" (click)="modalRef.hide()">close</button>
             </div>
         </form>
     </div>
 </ng-template>
-<div class="container">
+<div class="container mt-5">
     <div class="row justify-content-center">
-        <product-item class="col-lg-3 col-md-4 col-sm-1" *ngFor="let prod of pData" [product]="prod"></product-item>
+        <product-item (sendToParent)="addToArr($event)" class="col-lg-3 col-md-4 col-sm-1" *ngFor="let prod of pData"
+            [product]="prod"></product-item>
     </div>
 
 </div>
-<pagination [totalItems]="data.length" [itemsPerPage]=3 (pageChanged)="pageChanged($event)"></pagination>
+<pagination class="right mr-5 mt-3" [totalItems]="data.length" [itemsPerPage]=3 (pageChanged)="pageChanged($event)">
+</pagination>

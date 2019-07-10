@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, TemplateRef } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../../_model/product';
 import { ProductService } from '../product.service';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-
+let deletedArray = []
 @Component({
   selector: 'product-item',
   templateUrl: './product-item.component.html',
@@ -13,11 +13,16 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class ProductItemComponent implements OnInit {
   @Input() product: Product;
+  @Output() isDisabled;
   modalRef: BsModalRef;
   editProductForm: FormGroup;
+  @Output() sendToParent = new EventEmitter();
+  // deletedArray: number[];
   constructor(private productService: ProductService, private modalService: BsModalService) { }
 
   ngOnInit() {
+    this.isDisabled = true;
+    console.log(this.isDisabled)
     this.editProductForm = new FormGroup({
       productName: new FormControl(''),
       productPrice: new FormControl('', Validators.compose([Validators.required,
@@ -36,6 +41,24 @@ export class ProductItemComponent implements OnInit {
       this.productService.update(this.product)
       this.modalService.hide(1)
     }
+  }
+
+  deleteFn(event, id: number) {
+    if (event.target.checked) {
+      deletedArray.push(id);
+      this.isDisabled = false
+      this.sendToParent.emit(deletedArray)
+    }
+    else if (deletedArray.includes(id)) {
+      for (let i = 0; i < deletedArray.length; i++) {
+        if (deletedArray[i] == id) {
+          deletedArray.splice(i, 1);
+          this.sendToParent.emit(deletedArray)
+        }
+      }
+    }
+    // console.log(deletedArray)
+    // console.log(this.isDisabled)
   }
 
 }

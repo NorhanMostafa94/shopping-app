@@ -21,7 +21,7 @@ export class ProductListComponent implements OnInit {
   modalRef: BsModalRef;
   addProductForm: FormGroup;
   pData: Product[];
-
+  arr: [] = []
   constructor(private productService: ProductService, private activatedRoute: ActivatedRoute, private modalService: BsModalService) { }
 
   ngOnInit() {
@@ -50,14 +50,14 @@ export class ProductListComponent implements OnInit {
 
   onSubmit() {
     this.addProductForm.getRawValue();
-    this.product = {
-      name: this.addProductForm.controls.productName.value,
-      code: this.addProductForm.controls.productCode.value,
-      price: this.addProductForm.controls.productPrice.value,
-      image: 'assets/images/avatar.jpg',
-      fkCategoryId: this.id
-    };
     if (this.addProductForm.controls.productName.valid && this.addProductForm.controls.productCode.valid && this.addProductForm.controls.productPrice.valid) {
+      this.product = {
+        name: this.addProductForm.controls.productName.value,
+        code: this.addProductForm.controls.productCode.value,
+        price: this.addProductForm.controls.productPrice.value,
+        image: 'assets/images/avatar.jpg',
+        fkCategoryId: this.id
+      };
       // this.productService.add(this.product);
       this.data.push(this.product)
       this.modalService.hide(1)
@@ -73,4 +73,12 @@ export class ProductListComponent implements OnInit {
     this.pData = this.data.slice(startItem, endItem);
   }
 
+  addToArr(array: []) {
+    this.arr = array
+    console.log(this.arr)
+  }
+
+  deleteArr() {
+    this.productService.delete(this.arr);
+  }
 }

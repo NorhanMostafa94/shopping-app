@@ -32,8 +32,7 @@ export class ProductService {
         const i = this.data.findIndex(prod => prod.id === product.id);
         this.data[i] = product;
     }
-    delete(id: number) {
-        const i = this.data.findIndex(prod => prod.id === id);
-        this.data.splice(i, 1);
+    delete(arr: []) {
+
     }
 }

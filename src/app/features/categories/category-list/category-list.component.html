@@ -1,4 +1,4 @@
-<button type="button" class="btn btn-primary" (click)="openModal(template)">Add Category</button>
+<button type="button" class="btn btn-success round mr-5 mt-2 right" (click)="openModal(template)">Add Category</button>
 
 <ng-template #template>
     <div class="modal-header">
@@ -18,12 +18,12 @@
 
                 <button class="btn btn-success" type="submit"
                     [disabled]="addCategoryForm.controls.categoryName.invalid">Save</button>
-                <button class="btn btn-danger" (click)="modalRef.hide()">close</button>
+                <button class="btn btn-danger" type="reset" (click)="modalRef.hide()">close</button>
             </div>
         </form>
     </div>
 </ng-template>
-<div class="container">
+<div class="container mt-5">
     <div class="row justify-content-center">
         <category-item class="col-lg-3 col-md-4 col-sm-1" *ngFor="let category of data" [category]="category">
         </category-item>
