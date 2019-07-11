@@ -27,6 +27,7 @@ export class ProductService {
         const i = this.data.length + 1;
         product.id = i;
         this.data.push(product);
+        return this.data
     }
     update(product: Product) {
         const i = this.data.findIndex(prod => prod.id === product.id);

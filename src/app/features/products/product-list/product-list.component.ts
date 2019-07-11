@@ -58,13 +58,15 @@ export class ProductListComponent implements OnInit {
         image: 'assets/images/avatar.jpg',
         fkCategoryId: this.id
       };
-      // this.productService.add(this.product);
-      this.data.push(this.product)
-      this.addProductForm.controls.productName.setValue('')
-      this.addProductForm.controls.productPrice.setValue('')
-      this.addProductForm.controls.productPrice.setValue('')
+      this.data = this.productService.add(this.product);
+      this.data = this.productService.getByCategoryId(this.id);
+
+      // this.data.push(this.product)
+      console.log(this.addProductForm);
+      this.addProductForm.controls.productName.reset('')
+      this.addProductForm.controls.productPrice.reset('')
+      this.addProductForm.controls.productCode.reset('')
       this.modalService.hide(1)
-      console.log(this.addProductForm.controls.productPrice);
       // console.log(this.productService.getAll())
     }
   }
