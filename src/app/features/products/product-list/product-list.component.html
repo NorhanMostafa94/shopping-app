@@ -46,5 +46,6 @@
     </div>
 
 </div>
+<h2 *ngIf="data.length==0" class="text-center mt-5">No Products</h2>
 <pagination class="right mr-5 mt-3" [totalItems]="data.length" [itemsPerPage]=3 (pageChanged)="pageChanged($event)">
 </pagination>

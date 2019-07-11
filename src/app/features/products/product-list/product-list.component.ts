@@ -60,9 +60,9 @@ export class ProductListComponent implements OnInit {
       };
       this.data = this.productService.add(this.product);
       this.data = this.productService.getByCategoryId(this.id);
-
+      // this.pData = this.data
       // this.data.push(this.product)
-      console.log(this.addProductForm);
+      console.log(this.data);
       this.addProductForm.controls.productName.reset('')
       this.addProductForm.controls.productPrice.reset('')
       this.addProductForm.controls.productCode.reset('')
