@@ -21,7 +21,7 @@ export class ProductListComponent implements OnInit {
   modalRef: BsModalRef;
   addProductForm: FormGroup;
   pData: Product[];
-  arr: [] = []
+  arr = []
   constructor(private productService: ProductService, private activatedRoute: ActivatedRoute, private modalService: BsModalService) { }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class ProductListComponent implements OnInit {
       this.id = +params.get('id');
       this.data = this.productService.getByCategoryId(this.id);
       this.pData = this.data.slice(0, 3);
-      console.log(this.data)
+      // console.log(this.data)
       if (this.data.length == 0) {
         console.log('null')
       }
@@ -79,6 +79,10 @@ export class ProductListComponent implements OnInit {
   }
 
   deleteArr() {
-    this.productService.delete(this.arr);
+
+    this.data = this.productService.delete(this.arr);
+    this.data = this.productService.getByCategoryId(this.id);
+    this.pData = this.data
+    console.log(this.pData)
   }
 }

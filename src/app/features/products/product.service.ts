@@ -32,7 +32,13 @@ export class ProductService {
         const i = this.data.findIndex(prod => prod.id === product.id);
         this.data[i] = product;
     }
-    delete(arr: []) {
+    delete(arr) {
+        return this.data = this.data.filter(el => {
+            return !arr.includes(el.id);
+        })
+        // return this.data;
 
+
+        console.log(this.data)
     }
 }
