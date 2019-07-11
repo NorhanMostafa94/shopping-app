@@ -40,7 +40,7 @@ export class ProductListComponent implements OnInit {
       productName: new FormControl('', Validators.required),
       productPrice: new FormControl('', Validators.compose([Validators.required,
       Validators.max(10000)])),
-      productCode: new FormControl('')
+      productCode: new FormControl('', Validators.required)
     })
 
   }
@@ -50,7 +50,7 @@ export class ProductListComponent implements OnInit {
 
   onSubmit() {
     this.addProductForm.getRawValue();
-    if (this.addProductForm.controls.productName.valid && this.addProductForm.controls.productCode.valid && this.addProductForm.controls.productPrice.valid) {
+    if (this.addProductForm.controls.productName.valid && this.addProductForm.controls.productPrice.valid && this.addProductForm.controls.productCode.valid) {
       this.product = {
         name: this.addProductForm.controls.productName.value,
         code: this.addProductForm.controls.productCode.value,
@@ -60,6 +60,9 @@ export class ProductListComponent implements OnInit {
       };
       // this.productService.add(this.product);
       this.data.push(this.product)
+      this.addProductForm.controls.productName.setValue('')
+      this.addProductForm.controls.productPrice.setValue('')
+      this.addProductForm.controls.productPrice.setValue('')
       this.modalService.hide(1)
       console.log(this.addProductForm.controls.productPrice);
       // console.log(this.productService.getAll())

@@ -32,16 +32,29 @@
         <form [formGroup]="editProductForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="">Product Name</label>
-                <input formControlName="productName" class="form-control" type="text" id="" [value]="product.name"
+                <input formControlName="productName" class="form-control" type="text" id="" [ngModel]="product.name"
                     required>
+                <span class="text-danger"
+                    *ngIf="editProductForm.controls.productName.invalid && editProductForm.controls.productName.dirty">
+                    Name is required</span>
             </div>
             <div class="form-group">
                 <label for="">Price</label>
-                <input formControlName="productPrice" class="form-control" type="number" id="" [value]="product.price">
+                <input formControlName="productPrice" class="form-control" type="number" id=""
+                    [ngModel]="product.price">
+                <span class="text-danger"
+                    *ngIf="editProductForm.controls.productPrice.invalid && editProductForm.controls.productPrice.dirty">
+                    Price is required</span>
+            </div>
+            <div class="form-group">
+                <label for="">Code</label>
+                <input formControlName="productCode" class="form-control" type="number" id="" [ngModel]="product.code">
+                <span class="text-danger"
+                    *ngIf="editProductForm.controls.productCode.invalid && editProductForm.controls.productCode.dirty">
+                    Code is required</span>
             </div>
             <div class="pull-right">
-                <button class="btn btn-success" type="submit"
-                    [disabled]="editProductForm.controls.productName.invalid && editProductForm.controls.productPrice.invalid">Save</button>
+                <button class="btn btn-success" type="submit">Save</button>
                 <button class="btn btn-danger" type="reset" (click)="modalRef.hide()">close</button>
             </div>
         </form>

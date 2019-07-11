@@ -26,7 +26,8 @@ export class ProductItemComponent implements OnInit {
     this.editProductForm = new FormGroup({
       productName: new FormControl(''),
       productPrice: new FormControl('', Validators.compose([Validators.required,
-      Validators.max(100000)]))
+      Validators.max(100000)])),
+      productCode: new FormControl('', Validators.required)
     })
   }
 
@@ -35,9 +36,11 @@ export class ProductItemComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.editProductForm.controls.productName.valid && this.editProductForm.controls.productPrice.valid) {
+    console.log(this.editProductForm.controls.productName.value)
+    if (this.editProductForm.controls.productName.valid && this.editProductForm.controls.productPrice.valid && this.editProductForm.controls.productCode.valid) {
       this.product.name = this.editProductForm.controls.productName.value;
       this.product.price = this.editProductForm.controls.productPrice.value;
+      this.product.code = this.editProductForm.controls.productCode.value;
       this.productService.update(this.product)
       this.modalService.hide(1)
     }
