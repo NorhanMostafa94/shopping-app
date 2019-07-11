@@ -30,9 +30,6 @@ export class ProductListComponent implements OnInit {
       this.data = this.productService.getByCategoryId(this.id);
       this.pData = this.data.slice(0, 3);
       // console.log(this.data)
-      if (this.data.length == 0) {
-        console.log('null')
-      }
     })
 
     //form
@@ -60,9 +57,6 @@ export class ProductListComponent implements OnInit {
       };
       this.data = this.productService.add(this.product);
       this.data = this.productService.getByCategoryId(this.id);
-      // this.pData = this.data
-      // this.data.push(this.product)
-      console.log(this.data);
       this.addProductForm.controls.productName.reset('')
       this.addProductForm.controls.productPrice.reset('')
       this.addProductForm.controls.productCode.reset('')
@@ -78,16 +72,16 @@ export class ProductListComponent implements OnInit {
     this.pData = this.data.slice(startItem, endItem);
   }
 
-  addToArr(array: []) {
+  addToBeDeletedArr(array: []) {
     this.arr = array
     console.log(this.arr)
   }
 
   deleteArr() {
-
     this.data = this.productService.delete(this.arr);
     this.data = this.productService.getByCategoryId(this.id);
     this.pData = this.data
+    this.arr.length--;
     console.log(this.pData)
   }
 }

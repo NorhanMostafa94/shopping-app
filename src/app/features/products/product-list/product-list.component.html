@@ -41,8 +41,8 @@
 </ng-template>
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <product-item (sendToParent)="addToArr($event)" class="col-lg-3 col-md-4 col-sm-1" *ngFor="let prod of pData"
-            [product]="prod"></product-item>
+        <product-item (sendToParent)="addToBeDeletedArr($event)" class="col-lg-3 col-md-4 col-sm-1"
+            *ngFor="let prod of pData" [product]="prod"></product-item>
     </div>
 
 </div>

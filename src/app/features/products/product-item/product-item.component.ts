@@ -46,7 +46,7 @@ export class ProductItemComponent implements OnInit {
     }
   }
 
-  deleteFn(event, id: number) {
+  deleteProducts(event, id: number) {
     if (event.target.checked) {
       deletedArray.push(id);
       this.isDisabled = false
@@ -60,8 +60,6 @@ export class ProductItemComponent implements OnInit {
         }
       }
     }
-    // console.log(deletedArray)
-    // console.log(this.isDisabled)
   }
 
 }
